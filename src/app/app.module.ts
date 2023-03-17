@@ -15,12 +15,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FiltersComponent } from './filters/filters.component';
 import {FieldsetModule} from 'primeng/fieldset';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumsListComponent,
-    FiltersComponent
+    FiltersComponent,
+    NavbarComponent,
    ],
   imports: [
     BrowserModule,
@@ -36,7 +41,9 @@ import {FieldsetModule} from 'primeng/fieldset';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FieldsetModule
+    FieldsetModule,
+    MenubarModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
