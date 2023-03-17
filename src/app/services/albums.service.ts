@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
-import { Album, emptyAlbum } from '../interfaces/album';
 import {albums} from '../data/data';
 import { Criteria } from '../interfaces/criteria';
 

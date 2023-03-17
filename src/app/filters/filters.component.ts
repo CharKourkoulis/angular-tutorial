@@ -30,6 +30,4 @@ export class FiltersComponent implements OnInit {
     this.service.updateFilter({title: ''});
   }
 
-
-
 }

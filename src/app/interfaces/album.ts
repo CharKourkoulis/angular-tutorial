@@ -7,10 +7,3 @@ export interface Album {
  rating:number;
 }
 
-export const emptyAlbum: Album = {
-  id: 0,
-  artist: "",
-  title: "",
-  imageUrl: "",
-  rating: 0
-}

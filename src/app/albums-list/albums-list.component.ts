@@ -4,6 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { Album } from '../interfaces/album';
 import { Criteria } from '../interfaces/criteria';
 import { AlbumsService } from '../services/albums.service';
+import { filterByTitle } from 'app/shared/filterByTitle';
 
 @Component({
   selector: 'app-albums-list',
@@ -14,11 +15,11 @@ export class AlbumsListComponent implements OnInit {
 
   albums$: Observable<Album[]> = this.service.albums$;
   /* The readonly stream */
-  filterAlbumsAction$ = this.service.filterAlbumsAction$;
+  filterAlbumsAction$: Observable<Criteria> = this.service.filterAlbumsAction$;
+
   filteredAlbums$ = combineLatest([this.albums$, this.filterAlbumsAction$]).pipe(
-    map(([albums, filter]: [Album[], Criteria]) => {
-      return albums.filter(album => album.title?.toLowerCase()
-      .indexOf(filter?.title?.toLowerCase() ?? '') != -1)
+    map(([albums, criteria]: [Album[], Criteria]) => {
+     return filterByTitle(albums, criteria)
     })
   );
 
