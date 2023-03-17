@@ -1,3 +1,26 @@
-<p>
-  albums-list works!
-</p>
+
+<div class="rp-data-view" *ngIf="filteredAlbums$ |async as albums" class="card">
+  <p-dataView #dv [value]="albums" [paginator]="true" [rows]="3" filterBy="title" layout="grid">
+      <ng-template let-album pTemplate="gridItem">
+          <div class="p-col-12 p-md-3">
+              <div style="cursor: pointer;" class="album-grid-item card">
+                  <div class="album-grid-item-top">
+                      <div>
+                          <i class="pi pi-tag album-category-icon"></i>
+                          <span class="album-category">{{album.artist}}</span>
+                      </div>
+                  </div>
+                  <div class="album-grid-item-content">
+                      <img class="album-image" [src]=" album.imageUrl" [alt]="album.imageUrl" />
+                      <div class="album-name">{{album?.title}}</div>
+                      <p-rating class="album-rating" [ngModel]="album.rating" [cancel]="false">
+                      </p-rating>
+                  </div>
+                  <div class="album-grid-item-bottom">
+                      <p-button class="album-favourite" icon="pi pi-heart"></p-button>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView>
+</div>

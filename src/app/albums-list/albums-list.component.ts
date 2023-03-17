@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { Album } from '../interfaces/album';
+import { Criteria } from '../interfaces/criteria';
+import { AlbumsService } from '../services/albums.service';
 
 @Component({
   selector: 'app-albums-list',
@@ -7,9 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumsListComponent implements OnInit {
 
-  constructor() { }
+  albums$: Observable<Album[]> = this.service.albums$;
+  /* The readonly stream */
+  filterAlbumsAction$ = this.service.filterAlbumsAction$;
+  filteredAlbums$ = combineLatest([this.albums$, this.filterAlbumsAction$]).pipe(
+    map(([albums, filter]: [Album[], Criteria]) => {
+      return albums.filter(album => album.title?.toLowerCase()
+      .indexOf(filter?.title?.toLowerCase() ?? '') != -1)
+    })
+  );
 
-  ngOnInit() {
+  constructor(private service: AlbumsService) {
+  }
+
+  ngOnInit(): void {
   }
 
 }

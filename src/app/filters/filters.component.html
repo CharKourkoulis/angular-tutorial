@@ -1,0 +1,20 @@
+<div class="rp-filters">
+  <form [formGroup]="titleForm">
+      <fieldset class="rp-filters-group">
+          <legend>Filters</legend>
+          <div class="rp-filter-button m-1">
+              <p-button   class="p-button-raised button-margin p-button-outlined" (onClick)="clearFilter()" label="Clear all"></p-button>
+              <p-button   class="rp-filter-button p-button-raised button-margin"  (onClick)="filterResults()" label="See results"></p-button>
+          </div>
+          <div>
+            <div class="button-margin">
+              <span class="p-float-label p-input-icon-right">
+              <label for="title">Title:</label>
+              <input class="m-auto" pInputText type="text" id="title" formControlName="title">
+            </span>
+            </div>
+
+          </div>
+      </fieldset>
+  </form>
+</div>

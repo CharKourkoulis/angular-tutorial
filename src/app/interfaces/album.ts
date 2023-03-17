@@ -6,3 +6,11 @@ export interface Album {
  imageUrl: string;
  rating:number;
 }
+
+export const emptyAlbum: Album = {
+  id: 0,
+  artist: "",
+  title: "",
+  imageUrl: "",
+  rating: 0
+}
