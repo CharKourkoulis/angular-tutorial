@@ -8,7 +8,7 @@ import { Criteria } from '../interfaces/criteria';
 })
 export class AlbumsService {
 
-  albums$ = of(albums);
+  albums$ = of(albums); //since there is no back-end, we created a dummy array with some data of type Album.
   private filterAlbumSubject = new BehaviorSubject<Criteria>({title: ''});
   filterAlbumsAction$ = this.filterAlbumSubject.asObservable();
 

@@ -11,22 +11,20 @@ import { filterByTitle } from 'app/shared/filterByTitle';
   templateUrl: './albums-list.component.html',
   styleUrls: ['./albums-list.component.css']
 })
-export class AlbumsListComponent implements OnInit {
+export class AlbumsListComponent {
 
   albums$: Observable<Album[]> = this.service.albums$;
-  /* The readonly stream */
   filterAlbumsAction$: Observable<Criteria> = this.service.filterAlbumsAction$;
 
-  filteredAlbums$ = combineLatest([this.albums$, this.filterAlbumsAction$]).pipe(
-    map(([albums, criteria]: [Album[], Criteria]) => {
-     return filterByTitle(albums, criteria)
-    })
+  filteredAlbums$: Observable<Album[]> =
+    combineLatest([this.albums$, this.filterAlbumsAction$])
+    .pipe(
+      map(([albums, criteria]: [Album[], Criteria]) => {
+        return filterByTitle(albums, criteria)
+      })
   );
 
   constructor(private service: AlbumsService) {
-  }
-
-  ngOnInit(): void {
   }
 
 }

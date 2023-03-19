@@ -8,7 +8,7 @@ import { AlbumsService } from 'app/services/albums.service';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent {
 
   constructor(
     private service: AlbumsService,
@@ -18,9 +18,6 @@ export class FiltersComponent implements OnInit {
   titleForm = this.fb.group({
     title: [''],
   });
-
-  ngOnInit(): void {
-  }
 
   filterResults() {
     this.service.updateFilter(this.titleForm.value as Criteria);
