@@ -14,17 +14,24 @@ import { filterByTitle } from 'app/shared/filterByTitle';
 export class AlbumsListComponent implements OnInit, OnDestroy{
 
   albums!: Album[];
+  filteredAlbums!: Album[];
   albumsSubscription!: Subscription;
-
+  criteriaSubscription!: Subscription;
 
   constructor(private albumsService: AlbumsService) {
   }
 
   ngOnInit(){
     this.albumsSubscription = this.albumsService.albums$
-      .subscribe(albums => {
+      .subscribe((albums: Album[]) => {
         this.albums = albums;
-      })
+        this.filteredAlbums = albums;
+      });
+    this.criteriaSubscription = this.albumsService.filterCriteria$
+      .subscribe((criteria: Criteria) => {
+        this.filteredAlbums = this.albums.filter(album =>
+          album.title?.indexOf(criteria.title ?? '') != -1);
+      });
   }
 
   ngOnDestroy(): void {
