@@ -29,9 +29,13 @@ export class AlbumsListComponent implements OnInit, OnDestroy{
       });
     this.criteriaSubscription = this.albumsService.filterCriteria$
       .subscribe((criteria: Criteria) => {
-        this.filteredAlbums = this.albums.filter(album =>
-          album.title?.indexOf(criteria.title ?? '') != -1);
+        this.filterAlbumsByTitle(criteria);
       });
+  }
+
+  filterAlbumsByTitle(criteria: Criteria): void {
+    this.filteredAlbums = this.albums.filter(album =>
+      album.title?.indexOf(criteria.title ?? '') != -1);
   }
 
   ngOnDestroy(): void {
