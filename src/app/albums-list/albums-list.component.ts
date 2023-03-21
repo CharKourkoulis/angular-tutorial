@@ -9,7 +9,8 @@ import { filterByTitle } from 'app/shared/filterByTitle';
 @Component({
   selector: 'app-albums-list',
   templateUrl: './albums-list.component.html',
-  styleUrls: ['./albums-list.component.css']
+  styleUrls: ['./albums-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumsListComponent {
 
