@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 import { Album } from '../interfaces/album';
 import { Criteria } from '../interfaces/criteria';
 import { AlbumsService } from '../services/albums.service';
@@ -11,23 +11,24 @@ import { filterByTitle } from 'app/shared/filterByTitle';
   templateUrl: './albums-list.component.html',
   styleUrls: ['./albums-list.component.css']
 })
-export class AlbumsListComponent {
+export class AlbumsListComponent implements OnInit, OnDestroy{
 
-  albums$: Observable<Album[]> = this.service.albums$;
-  filterCriteria$: Observable<Criteria> = this.service.filterCriteria$;
+  albums!: Album[];
+  albumsSubscription!: Subscription;
 
-  filteredAlbums$: Observable<Album[]> =
-    combineLatest([
-      this.albums$,
-      this.filterCriteria$
-    ])
-    .pipe(
-      map(([albums, criteria]: [Album[], Criteria]) => {
-        return filterByTitle(albums, criteria)
+
+  constructor(private albumsService: AlbumsService) {
+  }
+
+  ngOnInit(){
+    this.albumsSubscription = this.albumsService.albums$
+      .subscribe(albums => {
+        this.albums = albums;
       })
-  );
+  }
 
-  constructor(private service: AlbumsService) {
+  ngOnDestroy(): void {
+    this.albumsSubscription.unsubscribe();
   }
 
 }

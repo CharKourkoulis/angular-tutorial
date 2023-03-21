@@ -1,5 +1,5 @@
 <div class="p-2">
-  <div *ngIf="filteredAlbums$ |async as albums" class="card">
+  <div *ngIf="albums" class="card">
     <p-dataView #dv [value]="albums" [paginator]="true" [rows]="4" filterBy="title" layout="grid">
         <ng-template let-album pTemplate="gridItem">
             <div class="col-3 p-md-3" style="display: inline-block">
