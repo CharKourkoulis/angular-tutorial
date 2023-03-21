@@ -36,6 +36,7 @@ export class AlbumsListComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.albumsSubscription.unsubscribe();
+    this.criteriaSubscription.unsubscribe();
   }
 
 }
