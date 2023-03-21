@@ -19,11 +19,11 @@ export class FiltersComponent {
     title: [''],
   });
 
-  filterResults() {
+  filterResults(): void {
     this.filteringCriteria.emit(this.titleForm.value as Criteria);
   }
 
-  clearFilter() {
+  clearFilter(): void {
     this.filteringCriteria.emit({title: ''});
   }
 

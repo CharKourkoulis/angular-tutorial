@@ -14,7 +14,7 @@ export class AlbumsService {
 
 constructor() { }
 
-updateFilter(criteria: Criteria) {
+updateFilter(criteria: Criteria): void {
   this.filterAlbumSubject.next(criteria);
 }
 

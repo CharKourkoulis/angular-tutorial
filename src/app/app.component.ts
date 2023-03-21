@@ -13,7 +13,7 @@ export class AppComponent {
 
   }
 
-  filterCriteria(criteria: Criteria){
+  filterCriteria(criteria: Criteria): void{
     this.albumsService.updateFilter(criteria);
   }
 
