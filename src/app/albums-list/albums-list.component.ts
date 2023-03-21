@@ -14,12 +14,12 @@ import { filterByTitle } from 'app/shared/filterByTitle';
 export class AlbumsListComponent {
 
   albums$: Observable<Album[]> = this.service.albums$;
-  filterAlbumsAction$: Observable<Criteria> = this.service.filterAlbumsAction$;
+  filterCriteria$: Observable<Criteria> = this.service.filterCriteria$;
 
   filteredAlbums$: Observable<Album[]> =
     combineLatest([
       this.albums$,
-      this.filterAlbumsAction$
+      this.filterCriteria$
     ])
     .pipe(
       map(([albums, criteria]: [Album[], Criteria]) => {
