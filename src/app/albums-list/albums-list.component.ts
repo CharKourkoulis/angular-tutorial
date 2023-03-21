@@ -17,7 +17,10 @@ export class AlbumsListComponent {
   filterAlbumsAction$: Observable<Criteria> = this.service.filterAlbumsAction$;
 
   filteredAlbums$: Observable<Album[]> =
-    combineLatest([this.albums$, this.filterAlbumsAction$])
+    combineLatest([
+      this.albums$,
+      this.filterAlbumsAction$
+    ])
     .pipe(
       map(([albums, criteria]: [Album[], Criteria]) => {
         return filterByTitle(albums, criteria)

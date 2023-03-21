@@ -3,7 +3,7 @@
 </div>
 <div class="row">
   <div class="col-2">
-    <app-filters></app-filters>
+    <app-filters (filteringCriteria)="filterCriteria($event)"></app-filters>
   </div>
   <div class="col-10">
   <app-albums-list></app-albums-list>

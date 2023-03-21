@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Criteria } from 'app/interfaces/criteria';
 import { AlbumsService } from 'app/services/albums.service';
@@ -10,21 +10,21 @@ import { AlbumsService } from 'app/services/albums.service';
 })
 export class FiltersComponent {
 
-  constructor(
-    private service: AlbumsService,
-    private fb: FormBuilder
-    ) { }
+  @Output() filteringCriteria = new EventEmitter<Criteria>();
+
+  constructor(private fb: FormBuilder)
+  { }
 
   titleForm = this.fb.group({
     title: [''],
   });
 
   filterResults() {
-    this.service.updateFilter(this.titleForm.value as Criteria);
+    this.filteringCriteria.emit(this.titleForm.value as Criteria);
   }
 
   clearFilter() {
-    this.service.updateFilter({title: ''});
+    this.filteringCriteria.emit({title: ''});
   }
 
 }
