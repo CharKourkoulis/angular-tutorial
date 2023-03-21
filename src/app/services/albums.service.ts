@@ -13,10 +13,10 @@ export class AlbumsService {
   private filterCriteriaSubject = new BehaviorSubject<Criteria>({title: ''});
   filterCriteria$: Observable<Criteria> = this.filterCriteriaSubject.asObservable();
 
-constructor() { }
+  constructor() { }
 
-updateFilter(criteria: Criteria): void {
-  this.filterCriteriaSubject.next(criteria);
-}
+  updateFilter(criteria: Criteria): void {
+    this.filterCriteriaSubject.next(criteria);
+  }
 
 }
