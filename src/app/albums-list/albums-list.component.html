@@ -2,8 +2,8 @@
   <div *ngIf="albums" class="card">
     <p-dataView #dv [value]="filteredAlbums" [paginator]="true" [rows]="4" filterBy="title" layout="grid">
         <ng-template let-album pTemplate="gridItem">
-            <div class="col-3 p-md-3" style="display: inline-block">
-                <div style="cursor: pointer;" class="album-grid-item card">
+            <div class="col-3 p-md-3 inline">
+                <div class="album-grid-item card">
                     <div class="album-grid-item-top">
                         <div>
                             <i class="pi pi-tag album-category-icon"></i>
